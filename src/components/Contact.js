@@ -33,7 +33,46 @@ const Contact = () => {
     }
   `;
 
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <h2 className="common-heading">Contact Us</h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111835.4044015685!2d78.69751187713128!3d28.843135359917667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390afbea2f5646c9%3A0xb8c97ce4e95398db!2sMoradabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1669040936358!5m2!1sen!2sin"
+        width="100%"
+        height="400"
+        style={{ border: 0 }}
+        // allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <div className="container">
+        <div className="contact-form">
+          <form
+            action="https://formspree.io/f/mzbwwwpg"
+            method="POST"
+            className="contact-inputs"
+            autoComplete="off"
+          >
+            <input
+              required
+              type="text"
+              name="username"
+              placeholder="User Name"
+            />
+            <input required type="email" name="Email" placeholder="Email" />
+            <textarea
+              required
+              name="message"
+              cols="30"
+              rows="7"
+              placeholder="Enter your Message"
+            ></textarea>
+            <input type="submit" value="Send" />
+          </form>
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 export default Contact;
