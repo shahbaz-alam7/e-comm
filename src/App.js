@@ -9,6 +9,8 @@ import SingleProduct from "./components/SingleProduct";
 import { GlobalStyle } from "./components/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/header/Header";
+import Footer from "./components/common/Footer";
+import ErrorPage from "./components/common/ErrorPage";
 const App = () => {
   const theme = {
     colors: {
@@ -46,7 +48,9 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/productSpecification/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

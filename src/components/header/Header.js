@@ -1,18 +1,20 @@
 import React from "react";
-import Navbar from "./Navbar";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import Navbar from "./Navbar";
+
 const Header = () => {
   return (
     <MainHeader>
-      <NavLink to="/">
-        <img src="./images/logo.png" className="logo" alt="my logo" />
-      </NavLink>
+      <a href="https://ecom-ref.netlify.app/" target="_blank">
+        <img src="./images/logo.png" className="logo" alt="my logo img" />
+      </a>
       <Navbar />
     </MainHeader>
   );
 };
-const MainHeader = styled.div`
+
+const MainHeader = styled.header`
   padding: 0 4.8rem;
   height: 10rem;
   background-color: ${({ theme }) => theme.colors.bg};
@@ -22,7 +24,7 @@ const MainHeader = styled.div`
   position: relative;
 
   .logo {
-    height: 80px;
+    height: 5rem;
   }
 `;
 export default Header;
