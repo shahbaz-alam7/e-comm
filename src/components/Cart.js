@@ -8,7 +8,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Cart = () => {
   const { cart, clearCart, shippingFees, total_price } = useCartContext();
   const { isAuthenticated, user } = useAuth0();
-  console.log("🚀 ~ file: Cart.js:11 ~ Cart ~ user", user)
+  console.log(
+    "🚀 ~ file: Cart.js:11 ~ Cart ~ user",
+    isAuthenticated,
+    "user",
+    user
+  );
   return (
     <Wrapper>
       <div className="container">
