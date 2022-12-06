@@ -6,9 +6,9 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <MainHeader>
-      <a href="https://ecom-ref.netlify.app/" target="_blank">
+      <NavLink to="/">
         <img src="./images/logo.png" className="logo" alt="my logo img" />
-      </a>
+      </NavLink>
       <Navbar />
     </MainHeader>
   );
