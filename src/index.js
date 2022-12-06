@@ -7,13 +7,15 @@ import { AppProvider } from "./context/productContext";
 import { FilterContextProvider } from "./context/filterContext";
 import { CartContextProvider } from "./context/cartContext";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { domain, clientId } from "./data";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 root.render(
   <Auth0Provider
-    domain={domain}
-    clientId={clientId}
+    domain={DOMAIN}
+    clientId={CLIENT_ID}
     redirectUri={window.location.origin}
   >
     <AppProvider>
@@ -27,4 +29,3 @@ root.render(
 );
 
 reportWebVitals();
-// :  http://192.168.43.196:3000
