@@ -33,6 +33,7 @@ const Sort = () => {
             className="sort-selection--style"
             onClick={sorting}
           >
+            <option hidden>Choose</option>
             <option value="lowest">Price(lowest)</option>
             <option value="highest">Price(highest)</option>
             <option value="a-z">Price(a-z)</option>

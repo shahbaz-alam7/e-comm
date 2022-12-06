@@ -4,17 +4,13 @@ import { BsCheck } from "react-icons/bs";
 import { Button } from "../styles/Button";
 import QtyIncDecComp from "../helpers/QtyIncDecComp";
 import { NavLink } from "react-router-dom";
+import { useCartContext } from "../context/cartContext";
 const AddToCart = ({ product }) => {
+  const { addtoCart } = useCartContext();
   const { id, stock, colors } = product;
 
-  const [currColor, setCurrColor] = React.useState(0);
+  const [currColor, setCurrColor] = React.useState(colors[0]);
   const [qty, setQty] = useState(1);
-  const increaseQty = () => {
-    qty < stock ? setQty(qty + 1) : setQty(stock);
-  };
-  const decreaseQty = () => {
-    qty > 1 ? setQty(qty - 1) : setQty(1);
-  };
   return (
     <Wrapper>
       <div className="colors">
@@ -23,12 +19,12 @@ const AddToCart = ({ product }) => {
           {colors.map((item, i) => {
             return (
               <button
-                className={currColor == i ? "btnStyle active" : "btnStyle"}
+                className={currColor === item ? "btnStyle active" : "btnStyle"}
                 style={{ backgroundColor: item }}
                 key={i}
-                onClick={() => setCurrColor(i)}
+                onClick={() => setCurrColor(colors[i])}
               >
-                {currColor == i ? <BsCheck className="icon" /> : null}
+                {currColor === item ? <BsCheck className="icon" /> : null}
               </button>
             );
           })}
@@ -36,10 +32,15 @@ const AddToCart = ({ product }) => {
       </div>
       <QtyIncDecComp
         qty={qty}
-        decreaseQty={decreaseQty}
-        increaseQty={increaseQty}
+        stock={stock}
+        setQty={setQty}
+        // decreaseQty={decreaseQty}
+        // increaseQty={increaseQty}
       />
-      <NavLink to="/cart">
+      <NavLink
+        to="/cart"
+        onClick={() => addtoCart(id, currColor, qty, product)}
+      >
         <Button>Add To Cart</Button>
       </NavLink>
     </Wrapper>

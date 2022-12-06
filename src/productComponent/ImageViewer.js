@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 const ImageViewer = ({ images = [{ url: "" }] }) => {
-  console.log(images);
   const [defaultImg, setDefaultImg] = useState(images[0]);
   return (
     <Wrapper>
       <div className="grid grid-four-column">
         {images.map((item, i) => {
           return (
-            <figure>
+            <figure key={i}>
               <img
-                key={item.id}
                 className="box-image--style"
                 src={item.url}
                 alt=""

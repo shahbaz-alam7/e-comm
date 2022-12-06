@@ -4,7 +4,6 @@ import { useProductContext } from "../../context/productContext";
 import Product from "./Product";
 const FeaturedProduct = () => {
   const { featuredProduct, isLoading } = useProductContext();
-  // console.log(featuredProduct);
   return (
     <Wrapper className="section">
       {isLoading ? (

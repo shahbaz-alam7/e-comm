@@ -1,9 +1,79 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
+import CartItem from "../cartComponents/CartItem";
+import { useCartContext } from "../context/cartContext";
+import FormatPrice from "../helpers/FormatPrice";
+import { Button } from "../styles/Button";
 const Cart = () => {
-  return <Wrapper></Wrapper>;
+  const { cart, clearCart, shippingFees, total_price } = useCartContext();
+  return (
+    <Wrapper>
+      {cart.length > 0 ? (
+        <div className="container">
+          <div className="cart-heading grid-five-column grid">
+            <p>Item</p>
+            <p className="cart-hide">Price</p>
+            <p>Quantity</p>
+            <p className="cart-hide">Subtotal</p>
+            <p>Remove</p>
+          </div>
+          <hr />
+          <div className="cart-item">
+            {cart.map((item, i) => {
+              return <CartItem key={item.id} {...item} />;
+            })}
+          </div>
+          <hr />
+          <div className="cart-two-button">
+            <NavLink to="/product">
+              <Button>Continue Shopping</Button>
+            </NavLink>
+            <Button onClick={() => clearCart()} className="btn-clear">
+              Clear Cart
+            </Button>
+          </div>
+          <div className="order-total--amount">
+            <div className="order-total--subdata">
+              <div>
+                <p>Subtotal:</p>
+                <p>
+                  <FormatPrice price={total_price} />
+                </p>
+              </div>
+              <div>
+                <p>Shipping Fee:</p>
+                <p>
+                  <FormatPrice price={shippingFees} />
+                </p>
+              </div>
+              <hr />
+              <div>
+                <p>Order Total:</p>
+                <p>
+                  <FormatPrice price={total_price + shippingFees} />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <EmptyDiv>
+          <h3>Cart is empty</h3>
+        </EmptyDiv>
+      )}
+    </Wrapper>
+  );
 };
-
+const EmptyDiv = styled.div`
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  h3 {
+    font-size: 4.3rem;
+    text-transform: capitalize;
+    font-weight: 300;
+  }
+`;
 const Wrapper = styled.section`
   padding: 9rem 0;
 
@@ -18,7 +88,8 @@ const Wrapper = styled.section`
   }
   .cart-heading {
     text-align: center;
-    text-transform: uppercase;
+    /* padding: 0 10px; */
+    text-transform: capitalize;
   }
   hr {
     margin-top: 1rem;
@@ -29,7 +100,6 @@ const Wrapper = styled.section`
     flex-direction: column;
     gap: 3.2rem;
   }
-
   .cart-user--profile {
     display: flex;
     justify-content: flex-start;
@@ -113,7 +183,6 @@ const Wrapper = styled.section`
     color: #e74c3c;
     cursor: pointer;
   }
-
   .order-total--amount {
     width: 100%;
     margin: 4.8rem 0;

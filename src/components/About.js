@@ -4,7 +4,7 @@ import { useProductContext } from "../context/productContext";
 
 const About = () => {
   const data = {
-    title: "Shopy Ecommerce",
+    title: "Shopsy Ecommerce",
   };
   const { name } = useProductContext();
   return (

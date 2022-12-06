@@ -32,7 +32,7 @@ const AppProvider = ({ children }) => {
       const singleProduct = await res.data;
       dispatch({ type: "SET_SINGLE_PRODUCT", payload: singleProduct });
     } catch (error) {
-      console.log("error", error);
+      console.warn("error", error);
       dispatch({ type: "SET_SINGLE_ERROR" });
     }
   };
