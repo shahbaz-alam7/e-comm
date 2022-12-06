@@ -4,10 +4,21 @@ import CartItem from "../cartComponents/CartItem";
 import { useCartContext } from "../context/cartContext";
 import FormatPrice from "../helpers/FormatPrice";
 import { Button } from "../styles/Button";
+import { useAuth0 } from "@auth0/auth0-react";
 const Cart = () => {
   const { cart, clearCart, shippingFees, total_price } = useCartContext();
+  const { isAuthenticated, user } = useAuth0();
+  console.log("🚀 ~ file: Cart.js:11 ~ Cart ~ user", user)
   return (
     <Wrapper>
+      <div className="container">
+        {isAuthenticated && (
+          <div className="cart-user--profile">
+            <img src={user.picture} alt="user.name" />
+            <h2>{user.name}</h2>
+          </div>
+        )}
+      </div>
       {cart.length > 0 ? (
         <div className="container">
           <div className="cart-heading grid-five-column grid">
@@ -114,10 +125,8 @@ const Wrapper = styled.section`
     }
     h2 {
       font-size: 2.4rem;
+      text-transform: capitalize;
     }
-  }
-  .cart-user--name {
-    text-transform: capitalize;
   }
   .cart-image--name {
     /* background-color: red; */

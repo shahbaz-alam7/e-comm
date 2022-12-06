@@ -1,17 +1,12 @@
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const Contact = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
+  const { user, isAuthenticated } = useAuth0();
+  const [userData] = useState({
+    name: isAuthenticated ? user.name : "",
+    email: isAuthenticated ? user.email : "",
   });
-  useEffect(() => {
-    setUserData(user);
-  }, []);
-  console.log("🚀 ~ file: Contact.js:10 ~ Contact ~ email", userData);
-
   return (
     <Wrapper>
       <h2 className="common-heading">Contact Us</h2>
@@ -20,6 +15,7 @@ const Contact = () => {
         width="100%"
         height="400"
         style={{ border: 0 }}
+        title="my-google-map"
         // allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
@@ -45,7 +41,6 @@ const Contact = () => {
               name="Email"
               placeholder="Email"
               defaultValue={userData.email}
-              // style={{ textTransform: "lowercase" }}
             />
 
             <textarea
