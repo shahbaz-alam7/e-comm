@@ -1,37 +1,16 @@
 import styled from "styled-components";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";
 const Contact = () => {
-  const Wrapper = styled.section`
-    padding: 9rem 0 5rem 0;
-    text-align: center;
-
-    .container {
-      margin-top: 6rem;
-
-      .contact-form {
-        max-width: 50rem;
-        margin: auto;
-
-        .contact-inputs {
-          display: flex;
-          flex-direction: column;
-          gap: 3rem;
-
-          input[type="submit"] {
-            cursor: pointer;
-            transition: all 0.2s;
-
-            &:hover {
-              background-color: ${({ theme }) => theme.colors.white};
-              border: 1px solid ${({ theme }) => theme.colors.btn};
-              color: ${({ theme }) => theme.colors.btn};
-              transform: scale(0.9);
-            }
-          }
-        }
-      }
-    }
-  `;
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+  });
+  useEffect(() => {
+    setUserData(user);
+  }, []);
+  console.log("🚀 ~ file: Contact.js:10 ~ Contact ~ email", userData);
 
   return (
     <Wrapper>
@@ -57,9 +36,18 @@ const Contact = () => {
               required
               type="text"
               name="username"
+              defaultValue={userData.name}
               placeholder="User Name"
             />
-            <input required type="email" name="Email" placeholder="Email" />
+            <input
+              required
+              type="email"
+              name="Email"
+              placeholder="Email"
+              defaultValue={userData.email}
+              // style={{ textTransform: "lowercase" }}
+            />
+
             <textarea
               required
               name="message"
@@ -74,5 +62,35 @@ const Contact = () => {
     </Wrapper>
   );
 };
+const Wrapper = styled.section`
+  padding: 9rem 0 5rem 0;
+  text-align: center;
 
+  .container {
+    margin-top: 6rem;
+
+    .contact-form {
+      max-width: 50rem;
+      margin: auto;
+
+      .contact-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        input[type="submit"] {
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            background-color: ${({ theme }) => theme.colors.white};
+            border: 1px solid ${({ theme }) => theme.colors.btn};
+            color: ${({ theme }) => theme.colors.btn};
+            transform: scale(0.9);
+          }
+        }
+      }
+    }
+  }
+`;
 export default Contact;

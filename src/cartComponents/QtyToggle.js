@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
-const QtyIncDecComp = ({ qty, stock, setQty }) => {
-  const increaseQty = () => {
-    qty < stock ? setQty(qty + 1) : setQty(stock);
-  };
-  const decreaseQty = () => {
-    qty > 1 ? setQty(qty - 1) : setQty(1);
-  };
+const QtyToggle = ({ qty, decreaseQty, increaseQty }) => {
   return (
     <Wrapper>
       <div className="cart-button">
@@ -46,4 +40,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default QtyIncDecComp;
+export default QtyToggle;
