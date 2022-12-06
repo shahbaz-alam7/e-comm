@@ -73,12 +73,12 @@ const filterReducer = (state, action) => {
       }
       if (category && category !== "All") {
         tempData = tempData.filter((item) => {
-          return item.category == category;
+          return item.category === category;
         });
       }
       if (company && company !== "All") {
         tempData = tempData.filter((item) => {
-          return item.company == company;
+          return item.company === company;
         });
       }
       if (color !== "All") {

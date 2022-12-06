@@ -17,11 +17,11 @@ const SingleProduct = () => {
   const { getSingleProduct, isSingleProductLoading, singleProduct } =
     useProductContext();
   const {
-    category,
-    colors,
+    // category,
+    // colors,
     company,
     description,
-    featured,
+    // featured,
     image,
     name,
     price,
@@ -31,7 +31,7 @@ const SingleProduct = () => {
   } = singleProduct;
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
-  }, []);
+  });
   if (isSingleProductLoading) {
     return <div className="page_loading">Loading.....</div>;
   }

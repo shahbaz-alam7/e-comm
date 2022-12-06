@@ -50,7 +50,7 @@ const Filter = () => {
                 value={item}
                 onClick={updateFilterValue}
                 key={i}
-                className={category == item ? "active" : ""}
+                className={category === item ? "active" : ""}
               >
                 {item}
               </button>
@@ -80,7 +80,7 @@ const Filter = () => {
         <h3>Colors</h3>
         <div className="filter-color-style">
           {uniqueColors.map((item, i) => {
-            if (item == "All") {
+            if (item === "All") {
               return (
                 <button
                   key={item}
